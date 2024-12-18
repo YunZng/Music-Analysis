@@ -1,5 +1,3 @@
-import { Link } from "@nextui-org/link";
-
 import { Navbar } from "@/components/navbar";
 
 export default function DefaultLayout({
@@ -8,9 +6,11 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-screen w-screen">
-      <Navbar />
-      <main className="flex-grow">
+    <div className="flex h-screen w-screen grid grid-cols-6 overflow-hidden">
+      <div className="col-span-1">
+        <Navbar />
+      </div>
+      <main className="col-span-5 overflow-y-scroll">
         {children}
       </main>
     </div>

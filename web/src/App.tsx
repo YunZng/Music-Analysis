@@ -1,17 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 
-import Home from "./pages/home";
-import Queries from "./pages/queries";
-import Dashboard from "./pages/dashboard";
-import Artists from "./pages/artists";
+import Home from "./pages/Home/home";
+import Queries from "./pages/Queries/queries";
+import Statistics from "./pages/Statistics/statistics";
 
 function App() {
   return (
     <Routes>
       <Route element={<Home />} path="/" />
-      <Route element={<Queries />} path="/tables" />
-      <Route element={<Dashboard />} path="/dashboard" />
-      <Route element={<Artists />} path="/artists" />
+      <Route element={<Queries />} path="/queries" />
+      <Route element={<Statistics />} path="/statistics" />
     </Routes>
   );
 }
