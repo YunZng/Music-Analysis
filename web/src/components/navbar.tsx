@@ -1,16 +1,12 @@
 import { Link } from "@nextui-org/link";
-import {
-  BarChartIcon,
-  HomeIcon,
-  TableIcon,
-} from "@radix-ui/react-icons";
+import { BarChartIcon, HomeIcon, TableIcon } from "@radix-ui/react-icons";
 import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import { ThemeSwitch } from "./theme-switch";
 
 export const Navbar = () => {
   return (
-    <section className="bg-slate-100 dark:bg-zinc-900 h-full overflow-auto p-4">
+    <section className="bg-slate-100 dark:bg-zinc-900 h-full overflow-auto p-8">
       <div className="grid gap-8">
         <Link
           className={clsx(
@@ -51,7 +47,7 @@ export const Navbar = () => {
             <p className="text-base font-semibold">Statistics</p>
           </div>
         </Link>
-        <ThemeSwitch/>
+        <ThemeSwitch />
       </div>
     </section>
   );

@@ -17,7 +17,7 @@ import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
 
 export default function Queries() {
-  const { tracks, getTracks } = useQuery();
+  const { tracks, loadTracks } = useQuery();
 
   const [rowsPerPage, setRowsPerPage] = useState(25);
   const [order, setOrder] = useState<"ASC" | "DESC">("DESC");
@@ -28,7 +28,7 @@ export default function Queries() {
 
   const handleGetTracks = () => {
     const date = (document.getElementById("date") as HTMLInputElement).value;
-    getTracks(date, order);
+    loadTracks(date, order);
   };
   const [page, setPage] = useState(1);
   const pages = Math.ceil(tracks.length / rowsPerPage);
@@ -71,54 +71,59 @@ export default function Queries() {
             variant="bordered"
             className="w-48 h-full"
           />
-          <Button variant="bordered" onClick={toggleOrder} className="w-24 h-full">
+          <Button
+            variant="bordered"
+            onClick={toggleOrder}
+            className="w-24 h-full"
+          >
             {order}
           </Button>
         </div>
-        {tracks &&
-          (tracks.length == 0 ? (
-            <Alert color="secondary" variant="bordered" classname="w-48">
-              No data found
-            </Alert>
-          ) : (
-            <div className="w-full overflow-x-auto">
-              <Table
-                aria-label="Result table with pagination"
-                bottomContent={
-                  <div className="flex w-full justify-center">
-                    <Pagination
-                      isCompact
-                      showControls
-                      showShadow
-                      color="secondary"
-                      page={page}
-                      total={pages}
-                      onChange={(page) => setPage(page)}
-                    />
-                  </div>
-                }
-              >
-                <TableHeader>
-                  <TableColumn>Track Name</TableColumn>
-                  <TableColumn>Artist</TableColumn>
-                  <TableColumn>Album</TableColumn>
-                  <TableColumn>Date</TableColumn>
-                </TableHeader>
-                <TableBody>
-                  {items.map((track) => (
-                    <TableRow key={crypto.randomUUID()}>
-                      <TableCell>
-                        <Link href={track.url}>{track.name}</Link>
-                      </TableCell>
-                      <TableCell>{track.artist}</TableCell>
-                      <TableCell>{track.album}</TableCell>
-                      <TableCell>{track.date}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          ))}
+        {tracks.length == 0 ? (
+          <Alert color="secondary" variant="bordered" classname="w-48">
+            No data found
+          </Alert>
+        ) : (
+          <div className="w-full overflow-x-auto">
+            <Table
+              aria-label="Result table with pagination"
+              bottomContent={
+                <div className="flex w-full justify-center">
+                  <Pagination
+                    isCompact
+                    showControls
+                    showShadow
+                    color="secondary"
+                    page={page}
+                    total={pages}
+                    onChange={(page) => setPage(page)}
+                  />
+                </div>
+              }
+            >
+              <TableHeader>
+                <TableColumn>Track Name</TableColumn>
+                <TableColumn>Artist</TableColumn>
+                <TableColumn>Album</TableColumn>
+                <TableColumn>Date</TableColumn>
+              </TableHeader>
+              <TableBody>
+                {items.map((track) => (
+                  <TableRow key={crypto.randomUUID()}>
+                    <TableCell>
+                      <Link href={track.url} isExternal={true}>
+                        {track.name}
+                      </Link>
+                    </TableCell>
+                    <TableCell>{track.artist}</TableCell>
+                    <TableCell>{track.album}</TableCell>
+                    <TableCell>{track.date}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        )}
       </div>
     </DefaultLayout>
   );

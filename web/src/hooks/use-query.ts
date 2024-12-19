@@ -1,16 +1,23 @@
-import { getTrackByDate } from "@/api/api";
-import { $tracks, setTracks } from "@/store/store";
+import { getLongestLoudest, getMostPopular, getTrackByDate } from "@/api/api";
+import {
+  $mostPopular,
+  $nonstopBlashing,
+  $tracks,
+  setMostPopular,
+  setNonstopBlashing,
+  setTracks,
+} from "@/store/store";
 import { useStore } from "@nanostores/react";
 import { useState } from "react";
 
 export default function useQuery() {
   const tracks = useStore($tracks);
+  const mostPopular = useStore($mostPopular);
+  const longestLoudest = useStore($nonstopBlashing);
+
   const [isLoading, setIsLoading] = useState(false);
 
-  const getTracks = async (
-    date: string,
-    order: string
-  ) => {
+  const loadTracks = async (date: string, order: string) => {
     setIsLoading(true);
     try {
       const data = await getTrackByDate(date, order);
@@ -22,10 +29,29 @@ export default function useQuery() {
     }
   };
 
-  // useEffect(() => {
-  //   loadPosts();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [showMine]);
+  const loadMostPopular = async () => {
+    setIsLoading(true);
+    try {
+      const data = await getMostPopular();
+      setMostPopular(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  return { tracks, getTracks, isLoading };
+  const loadLongestLoudest = async () => {
+    setIsLoading(true);
+    try {
+      const data = await getLongestLoudest();
+      setNonstopBlashing(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  return { tracks, loadTracks, mostPopular, loadMostPopular, longestLoudest, loadLongestLoudest, isLoading };
 }
