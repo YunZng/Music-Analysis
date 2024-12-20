@@ -37,3 +37,18 @@ export interface Blasting{
   artist: string;
   duration: string;
 }
+
+export interface TrackTest{
+  Acousticness: string;
+  Danceability: string;
+  Energy: string;
+  Instrumentalness: string;
+  Liveness: string;
+  Speechiness: string;
+  Valence: string;
+  Loudness: string;
+  Tempo: string;
+  ArtistNames: string;
+  releaseYear: string;
+  durationMinutes: string;
+}

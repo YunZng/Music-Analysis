@@ -8,4 +8,7 @@ urlpatterns = [
     path('tracks', views.get_tracks, name='get_tracks'),
     path('popular', views.get_most_popular, name='get_most_popular'),
     path('longest_loudest', views.get_longest_loudest, name='get_longest_loudest'),
+    path('analysis', views.get_analysis, name='get_analysis'),
+    path('recommendation', views.get_predict_recommand, name='get_recommendations'),
+    path('rating', views.get_predict_rating, name='get_predictions'),
 ]
