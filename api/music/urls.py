@@ -11,4 +11,9 @@ urlpatterns = [
     path('analysis', views.get_analysis, name='get_analysis'),
     path('recommendation', views.get_predict_recommand, name='get_recommendations'),
     path('rating', views.get_predict_rating, name='get_predictions'),
+    path('custom_query1', views.get_custom_query1, name='get_custom_query1'),
+    path('custom_query2', views.get_custom_query2, name='get_custom_query2'),
+    path('custom_query3', views.get_custom_query3, name='get_custom_query3'),
+    path('custom_query4', views.get_custom_query4, name='get_custom_query4'),
+    path('custom_query', views.get_custom_query, name='get_custom_query')
 ]

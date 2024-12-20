@@ -23,6 +23,7 @@
 		"@nextui-org/input": "2.4.3",
 		"@nextui-org/kbd": "2.2.3",
 		"@nextui-org/link": "2.2.3",
+		"@nextui-org/modal": "^2.2.5",
 		"@nextui-org/navbar": "2.2.3",
 		"@nextui-org/pagination": "^2.2.6",
 		"@nextui-org/snippet": "2.2.4",

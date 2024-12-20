@@ -1,17 +1,19 @@
 import { api } from "@/api/api";
 import { title } from "@/components/primitives";
 import DefaultLayout from "@/layouts/default";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Spinner } from "@nextui-org/spinner";
+import { useStore } from "@nanostores/react";
+import { $analysis, setAnalysis } from "@/store/store";
 
 export default function Statistics() {
-  const [image, setImage] = useState(); // State to store image base64 strings
+  const analysis = useStore($analysis);
 
   useEffect(() => {
     fetch(`${api}/music/analysis`)
       .then((response) => response.json())
       .then((data) => {
-        setImage(data["data"]);
+        setAnalysis(data["data"]);
       });
   }, []);
 
@@ -22,8 +24,8 @@ export default function Statistics() {
           <h1 className={title({ color: "green" })}>Statistics</h1>
         </div>
         <div className="flex flex-col gap-4 justify-center">
-          {image ? (
-            <img src={`data:image/png;base64,${image}`} alt="Analysis" />
+          {analysis ? (
+            <img src={`data:image/png;base64,${analysis}`} alt="Analysis" />
           ) : (
             <Spinner color="success" label="Generating Statistics..." />
           )}

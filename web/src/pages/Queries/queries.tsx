@@ -2,6 +2,7 @@ import { title } from "@/components/primitives";
 import DefaultLayout from "@/layouts/default";
 import { Tabs, Tab } from "@nextui-org/tabs";
 import PredictRating from "./predictRating";
+import GenericQueries from "./genericQueries";
 
 export default function Queries() {
   return (
@@ -15,11 +16,8 @@ export default function Queries() {
             <Tab title="Predict Rating">
               <PredictRating />
             </Tab>
-            <Tab title="Find Similar Song">
-              
-            </Tab>
             <Tab title="Generic Queries">
-
+              <GenericQueries />
             </Tab>
           </Tabs>
         </div>
